@@ -1,0 +1,162 @@
+#root {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.choose-avatar {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 100px;
+}
+
+.choose-avatar img {
+  max-width: 100%;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.choose-avatar img:hover {
+  border-color: #fff;
+  transition: all .3s;
+}
+
+img {
+  max-width: 100%;
+}
+
+.wrapper {
+  padding: 0 20px;
+  background-color: #ffffff87;
+  display: inline-block;
+  width: 100%;
+  min-height: 90%;
+  box-sizing: border-box;
+}
+
+.remaker-image {
+  border: 2px solid #a0a0a0;
+  margin: 0 15px 15px 0;
+  border-radius: 3px;
+  display: flex;
+  position: relative;
+  box-sizing: border-box;
+  width: 280px;
+  background-image: url('/src/assets/loader.gif');
+  background-repeat: no-repeat;
+  background-size: 40px;
+  background-position: center;
+}
+
+.remaker-active {
+  border-color: #ffffff;
+  box-shadow: 0 0 15px #565656;
+}
+
+.remaker-active:after {
+  content: '';
+  background-image: url(/src/assets/tick.svg);
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 32px;
+  height: 32px;
+  z-index: 99;
+  background-size: 32px;
+  background-repeat: no-repeat;
+  background-color: #ffffff;
+  border-radius: 32px;
+}
+
+.cta-center {
+  text-align: center;
+  padding: 1rem 0;
+  position: fixed;
+  z-index: 999;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: auto;
+  width: 100%;
+  background-color: var(--white);
+}
+
+.cta-center button {
+  background-color: #f17d03;
+  color: var(--white);
+}
+
+.cta-center .btn-secondary {
+  background-color: var(--gray);
+  color: var(--black);
+  margin-left: 20px;
+}
+.back-btn {
+  text-align: center;
+  margin: 50px 0;
+}
+
+.back-btn .btn-secondary {
+  background-color: var(--white);
+  color: var(--black);
+  margin-left: 20px;
+}
+.form-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.form-group label {
+  font-weight: bold;
+  font-size: calc(var(--baseFontSize) - 1px);
+  margin-bottom: 0.2rem;
+  display: block;
+  text-align: left;
+}
+
+.form-control {
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  font-size: calc(var(--baseFontSize) - 1px);
+  background-color: var(--white);
+  color: var(--black);
+  width: 100%;
+  border: 1px solid var(--gray);
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+  resize: none;
+  background-color: var(--white);
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin: 2rem 0;
+}
+
+.primary-btn {
+  background-color: #f17d03;
+  color: var(--white);
+  font-weight: bold;
+}
+
+.primary-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media(max-width:767px) {
+  .choose-avatar {
+    justify-content: space-between;
+  }
+
+  .remaker-image {
+    width: 48%;
+    margin: 0 0 10px 0;
+  }
+
+  .remaker-active:after {
+    width: 25px;
+    height: 25px;
+    background-size: 25px;
+  }
+}

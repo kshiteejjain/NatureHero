@@ -1,0 +1,46 @@
+.signup-form {
+    background-color: #ffffffed;
+    max-width: 80%;
+    margin:0 auto 80px auto;
+    padding: 2rem 3rem 3rem 3rem;
+    box-sizing: border-box;
+    border-radius: 10px 70px 10px 70px;
+}
+
+.signup-form h2{
+    margin: 0 0 20px 0;
+}
+.termsConditions{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+.terms-home{
+    margin-bottom: 30px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+@media(max-width:767px){
+    .signup-form{
+        max-width: 100%;
+        padding: 1rem;
+        margin: 1rem 1rem 0 1rem;
+        border-radius: 5px 30px 5px 30px;
+    }
+    .terms-home{
+        max-height: 350px;
+    }
+    .signup-form h2{
+        margin: 0 0 10px 0;
+        font-size: calc(var(--baseFontSize) + 4px);
+    }
+    .terms-home p {
+        margin: 0 0 25px 0;
+        font-size: calc(var(--baseFontSize) - 1px);
+    }
+    .terms-home h3 {
+        margin: 0 0 8px 0;
+    }
+}

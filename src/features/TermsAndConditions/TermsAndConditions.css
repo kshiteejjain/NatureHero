@@ -1,0 +1,33 @@
+.terms {
+    max-width: 1250px;
+    background-color: #ffffffec;
+    margin: 0 auto 50px auto;
+    padding: 20px;
+    border-radius: 8px;
+}
+.terms h2{
+    margin: 0;
+}
+.terms h3{
+    font-size: calc(var(--baseFontSize) + 1px);
+    margin: 40px 0 10px 0;
+}
+.terms p{
+    margin: 0 0 10px 0;
+}
+
+@media(max-width:767px){
+    .terms {
+        max-width: 100%;
+        margin:15px;
+    }
+    .terms p{
+        font-size: calc(var(--baseFontSize) - 1px);
+    }
+    .terms h2{
+        font-size: calc(var(--baseFontSize) + 5px);
+    }
+    .terms h3{
+        margin:20px 0 7px 0;
+    }
+}
