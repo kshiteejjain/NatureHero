@@ -94,22 +94,29 @@ const Single = () => {
     }
   };
   const downloadImage = async (url: string) => {
-    try {
-      localStorage.clear();
-      const response = await fetch(url);
-      const blob = await response.blob();
-      const urlBlob = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = urlBlob;
-      link.download = 'nature-hero.png'; // You can set a default file name or use the original file name
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(urlBlob);
-    } catch (error: any) {
-      console.error('Error downloading the image:', error);
-    }
-  };
+  try {
+    localStorage.clear();
+    const response = await fetch(url);
+    const blob = await response.blob();
+    const urlBlob = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = urlBlob;
+    link.download = 'nature-hero.png'; // You can set a default file name or use the original file name
+    document.body.appendChild(link);
+    link.dispatchEvent(
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+        view: window
+      })
+    );
+    document.body.removeChild(link);
+    URL.revokeObjectURL(urlBlob);
+  } catch (error: any) {
+    console.error('Error downloading the image:', error);
+  }
+};
+
 
   return (
     <>
