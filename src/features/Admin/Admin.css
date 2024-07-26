@@ -52,3 +52,23 @@ table td {
     font-size: calc(var(--baseFontSize) + 2px);
     margin: 0;
 }
+.image-gallery-wrapper{
+    background-color: #ffffffed;
+    width: 95%;
+    margin: 0 auto 80px auto;
+    padding: 2rem 3rem 3rem 3rem;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+.image-gallery-wrapper h2{
+    margin-top: 0;
+}
+.image-gallery{
+    display: flex;
+    flex-wrap: wrap;
+}
+.image-gallery .img{
+    max-width: 400px;
+    margin-right: 10px;
+    border: 1px solid var(--gray);
+}

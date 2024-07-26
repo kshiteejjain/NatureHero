@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import Header from "../../components/Header/Header";
 import { firestore } from '../../utils/Firebase';
@@ -6,15 +7,17 @@ import { collection, query, getDocs } from "firebase/firestore";
 
 import './Admin.css';
 
-type Props = {
-    id?: string,
-    email?: string,
-    phone?: number,
-    termsChecked?: boolean,
-    timeStamp?: string,
-    paymentDetails?: any
-};
 
+type Props = {
+    id?: string;
+    email?: string;
+    phone?: number;
+    termsChecked?: boolean;
+    timeStamp?: string;
+    paymentDetails?: any;
+    amount?: number;
+    isPaid: boolean;
+};
 const Dashboard = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [users, setUsers] = useState<Props[]>([]);
@@ -24,6 +27,7 @@ const Dashboard = () => {
         email: '',
         password: ''
     });
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -31,9 +35,15 @@ const Dashboard = () => {
             const usersCollection = collection(db, 'AtalBotanicalUsers');
             const q = query(usersCollection);
             const querySnapshot = await getDocs(q);
-            const usersData = querySnapshot.docs.map((doc) => ({
+            const usersData: Props[] = querySnapshot.docs.map((doc) => ({
                 id: doc.id,
-                ...doc.data(),
+                email: doc.data().email || '',
+                phone: doc.data().phone || 0,
+                termsChecked: doc.data().termsChecked || false,
+                timeStamp: doc.data().timeStamp || '',
+                paymentDetails: doc.data().paymentDetails || '',
+                amount: doc.data().amount || 0,
+                isPaid: doc.data().isPaid || false,
             }));
             setUsers(usersData);
         };
@@ -67,8 +77,10 @@ const Dashboard = () => {
             <Header />
             {isLoading && <Loader />}
             <div className="dashboard-wrapper">
+                <button className="btn-primary" onClick={()=> navigate('/UploadImageFirestore')}> Upload Image</button>
                 {isAdmin ?
-                    <><h1>Dashboard</h1><div className="table-wrapper">
+                    <>
+                    <h1>Dashboard</h1><div className="table-wrapper">
                         <div className="table-headers">
                             <h2>User Details [{users?.length}]</h2>
                             <div>Search: <input type="search" value={searchTerm} onChange={handleSearchTermChange} /></div>
@@ -96,9 +108,9 @@ const Dashboard = () => {
                                             <td>{user.phone}</td>
                                             <td>{user.termsChecked ? 'Yes' : 'No'}</td>
                                             <td>{user?.timeStamp?.split('T')[0]?.split('-').reverse().join('-')}</td>
-                                            <td>{user.paymentDetails?.payload?.payment?.entity?.id}</td>
-                                            <td>{user.paymentDetails?.payload?.payment?.entity?.fee}</td>
-                                            <td>{user.paymentDetails?.payload?.payment?.entity?.status === 'captured' ? 'Paid' : 'Not Paid'}</td>
+                                            <td>{user.paymentDetails}</td>
+                                            <td>{user.amount}</td>
+                                            <td>{user.isPaid ? 'Paid' : 'Not Paid'}</td>
                                         </tr>
                                     ))}
                             </tbody>
@@ -128,7 +140,6 @@ const Dashboard = () => {
                                     required
                                 />
                             </div>
-
                             <button type="submit" className="primary-btn">Submit</button>
                         </form>
                     </div>
